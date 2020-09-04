@@ -203,7 +203,7 @@ Overall, the model indicates that a substantial proportion of the variation in h
 The results and insights from my final model support the following recommendations regarding the best ways to invest in maximizing the price of a home in King County:
 > - **Improve condition through repairs** - If the home has received a condition score from the county of less than 3, efforts should be made to make whatever repairs are necessary to bring the score up to a 3. The repairs needed will be relative to the age of the home, and the homeowner may be able to contact county officials to determine the types of repairs needed. If the condition score is already 3 or greater, money should instead be invested in the renovations outlined below to maximize selling price.
 
-<img src="Figures/Effect of Condition on House Price.png" width = 700 halign=center>
+<img src="Figures/Effect of Condition on House Price.png" width = 500 halign=center>
 
 > - **Increase grade by renovating** - The final model indicates that, when all other variables are held constant, increasing grade by 1 is associated with a \$45,410 increase in selling price. It may be possible to increase the grade assigned to the home by increasing the interior square footage of the home, replacing finishes with higher quality materials, making improvements to architectural design, or other improvements mentioned in documentation provided by the county (<a href="https://www.kingcounty.gov/depts/assessor/Reports/area-reports/2017/residential-westcentral/~/media/depts/assessor/documents/AreaReports/2017/Residential/013.ashx">King County Assessments</a>).
 
