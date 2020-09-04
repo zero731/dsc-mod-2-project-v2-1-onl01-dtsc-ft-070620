@@ -90,7 +90,7 @@ According to the z-score method, observations were considered outliers and remov
 Removing outliers based on the IQR method removed nearly 3 times the number of observations compared to the z-score method (1152 observations compared to 404). Removing price outliers reduced the skew of this variable, making the distributions appear closer to normal (the IQR cleaned data more so than the z-score cleaned data). The minimum price did not change across the datasets, but the maximum price dropped substantially from $7.7 million to $1.64 million when z-score outliers were removed, and then slightly again to $1.12 million.
 
 
-<img src="Figures/Comparison of Living Square Footage Distributions for Different Methods of Outlier Removal.png" width = 1000 halign=center>
+<img src="Figures/Comparison of Living Square Footage Distributions for Different Methods of Outlier Removal.png" width = 1200 halign=center>
 
 Other than price, the range of most variables was relatively unchanged. The minimum value was unchanged for all variables.
 
@@ -101,7 +101,7 @@ Maximum sqft_above dropped from 9,410 in the full dataset to 7,320 in the z-scor
 Maximum sqft_living15 dropped from 6,210 in the full dataset to 5,790 in the z-score cleaned data, and 5,380 in the IQR cleaned data.
 Maximum est_sqft_basement dropped from 4,820 in the full dataset to 2,850 in the z-score cleaned data, and 2,720 in the IQR cleaned data.
 
-<img src="Figures/Comparison of Price Distributions for Different Methods of Outlier Removal.png" width = 1000 halign=center>
+<img src="Figures/Comparison of Price Distributions for Different Methods of Outlier Removal.png" width = 1200 halign=center>
 
 ### Modeling
 Models were built by fitting the data using the `statsmodels` `ols` method. The same two initial models were tested on each of the 3 datasets: the full dataset, the z-score cleaned data, and the IQR-cleaned data. None of the features were transformed or scaled. The final model was fit to the IQR-cleaned dataset, and no transformations or scaling was deemed necessary.
@@ -133,13 +133,13 @@ Model performance for the first version of the initial model improved with the r
 The normality and homoscedasticity of model residuals improved dramatically with the removal of outliers. Residuals appeared to be the most normally distributed and homoscedastic for the model fit to the IQR-cleaned dataset.
 
 **Residuals for Initial Model Version 1 - Full Dataset**
-<img src="Figures/Initial Model 1-0_residuals.png" width = 700 halign=center>
+<img src="Figures/Initial Model 1-0_residuals.png" width = 1000 halign=center>
 
 **Residuals for Initial Model Version 1 - Z-score Cleaned Dataset**
-<img src="Figures/Z Model 1-0_residuals.png" width = 700 halign=center>
+<img src="Figures/Z Model 1-0_residuals.png" width = 1000 halign=center>
 
 **Residuals for Initial Model Version 1 - IQR Cleaned Dataset**
-<img src="Figures/IQR Model 1-0_residuals.png" width = 700 halign=center>
+<img src="Figures/IQR Model 1-0_residuals.png" width = 1000 halign=center>
 
 
 #### Initial Model Version 2
@@ -176,7 +176,7 @@ All the included features were significant predictors of price, except for 8 zip
 I evaluated multicollinearity in the final model by calculating variance inflation factors (VIF) for each of the predictors in the model. I considered a VIF of 6 to be the cutoff for inclusion in the model, but none of the predictors included in the model exceeded this value. Additionally, model residuals appeared to be reasonably normally distributed and homoscedastic as shown below:
 
 **Final Model Residuals**
-<img src="Figures/Final Model_residuals.png" width = 700 halign=center>
+<img src="Figures/Final Model_residuals.png" width = 1000 halign=center>
 
 When the final model was validated using a train-test split of the full dataset (no outliers removed), it performed very similarly and well for both the training data (R-Squared = 0.797) and the test data (R-Squared = 0.799). The R-squared values are likely less than that found for the final model (R-Squared = 0.824) because the train-test split was performed on the full dataset without outliers removed. The final model was fit to the IQR-cleaned data.
 
@@ -193,29 +193,29 @@ The final model appears to meet the assumptions of OLS regression (linearity, in
 
 Overall, the model indicates that a substantial proportion of the variation in home price in King County is explained by aspects of location such as zip code and latitude. However, the model also shows that homeowners can potentially increase their selling price through renovations. Of course, the increase in selling price and thus the return on investment will vary depending on the quality and type of renovations.
 
-<img src="Figures/House Prices in King County by Zip Code.png" width = 700 halign=center>
+<img src="Figures/House Prices in King County by Zip Code.png" width = 1000 halign=center>
 
 <img src="Figures/Effect of Latitude on House Price.png" width = 700 halign=center>
 
-<img src="Figures/Effect of Renovation on House Price.png" width = 700 halign=center>
+<img src="Figures/Effect of Renovation on House Price.png" width = 600 halign=center>
 
 ## Recommendations
 The results and insights from my final model support the following recommendations regarding the best ways to invest in maximizing the price of a home in King County:
 > - **Improve condition through repairs** - If the home has received a condition score from the county of less than 3, efforts should be made to make whatever repairs are necessary to bring the score up to a 3. The repairs needed will be relative to the age of the home, and the homeowner may be able to contact county officials to determine the types of repairs needed. If the condition score is already 3 or greater, money should instead be invested in the renovations outlined below to maximize selling price.
 
-<img src="Figures/Effect of Renovation on House Price.png" width = 700 halign=center>
+<img src="Figures/Effect of Condition on House Price.png" width = 700 halign=center>
 
-> - **Increase grade by renovating** - The final model indicates that, when all other variables are held constant, increasing grade by 1 is associated with a \\$45,410 increase in selling price. It may be possible to increase the grade assigned to the home by increasing the interior square footage of the home, replacing finishes with higher quality materials, making improvements to architectural design, or other improvements mentioned in documentation provided by the county (<a href="https://www.kingcounty.gov/depts/assessor/Reports/area-reports/2017/residential-westcentral/~/media/depts/assessor/documents/AreaReports/2017/Residential/013.ashx">King County Assessments</a>).
+> - **Increase grade by renovating** - The final model indicates that, when all other variables are held constant, increasing grade by 1 is associated with a \$45,410 increase in selling price. It may be possible to increase the grade assigned to the home by increasing the interior square footage of the home, replacing finishes with higher quality materials, making improvements to architectural design, or other improvements mentioned in documentation provided by the county (<a href="https://www.kingcounty.gov/depts/assessor/Reports/area-reports/2017/residential-westcentral/~/media/depts/assessor/documents/AreaReports/2017/Residential/013.ashx">King County Assessments</a>).
 
-<img src="Figures/Effect of Grade on House Price.png" width = 700 halign=center>
+<img src="Figures/Effect of Grade on House Price.png" width = 1000 halign=center>
 
 > - **Add square footage to the interior living area** - Aside from potentially increasing a home's grade, adding square footage to the total interior living area can also increase selling price. According to the final model, an increase of 1 square foot tends to increase selling price by $113. Additionally, if the opportunity arises to influence the development or construction of neighboring houses, homeowners would benefit from an increase in the average square footage of their neighbors' homes.
 
-<img src="Figures/Effect of Interior Living Area on House Price.png" width = 700 halign=center>
+<img src="Figures/Effect of Interior Living Area on House Price.png" width = 1000 halign=center>
 
-> - **Add bathrooms** - Homeowners can increase the price of their home by adding bathrooms. On average, increasing the number of bathrooms by 1 is associated with a \\$14,760 increase in price.
+> - **Add bathrooms** - Homeowners can increase the price of their home by adding bathrooms. On average, increasing the number of bathrooms by 1 is associated with a \$14,760 increase in price.
 
-<img src="Figures/Effect of Number of Bathrooms on House Price.png" width = 700 halign=center>
+<img src="Figures/Effect of Number of Bathrooms on House Price.png" width = 800 halign=center>
 
 > - **Do NOT add bedrooms or floors** - There appears to be no real benefit to doing so. The model actually predicts a decrease in selling price when either of these factors is increased, all else being equal.
 
